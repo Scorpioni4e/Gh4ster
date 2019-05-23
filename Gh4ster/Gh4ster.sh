@@ -40,9 +40,22 @@ echo -e "
           |__|        \/     \/          \/          \/    \/         
 
 \033[31m\033[m"
-select menusel in "Update sources.list (kali sana repository for installing more package)" "Update Kali Sana 2.0 to Kali 2016.2" "Update and Clean Kali" "Back to Main"; do
+select menusel in "Check" "Fix_Repository" "Update sources.list (kali sana repository for installing more package)" "Update Kali Sana 2.0 to Kali 2019.2" "Update and Clean Kali" "Back to Main"; do
 case $menusel in
-        "Update sources.list (Included kali sana repository for installing more package)")
+        
+        "Check")
+         echo -e "\033[31m====== We'll help to check repository ======\033[m" 
+         if cat /etc/apt/sources.list | grep -E "deb https://http.kali.org/kali kali-rolling main contrib non-free" || cat /etc/apt/sources.list | grep -E "deb https://http.kali.org/kali kali-rolling main non-free contrib"; then echo -e "\n\nIt's OK ! "; else echo -e "\n\nOoooh F*ck ! You must fix repository! "; fi
+         pause
+		 clear ;;
+
+        "Fix_Repository")
+         echo -e "\033[31m====== F*cking Provider ======\033[m"
+         echo -e "deb https://http.kali.org/kali kali-rolling main non-free contrib" > /etc/apt/sources.list
+         pause
+		 clear ;;
+
+       "Update sources.list (Included kali sana repository for installing more package)")
                 
 		echo -e "\033[31m====== Adding new sources list and updating ======\033[m"
 		rm /etc/apt/sources.list
@@ -5709,7 +5722,7 @@ case $menusel in
         clear ;;
 
 	"Check Gh4st-Update")
-		firefox https://github.com/MoonlightMP/Gh4ster
+		firefox https://github.com/Scorpioni4e/Gh4ster.git
 		pause
 		clear ;;
 	
